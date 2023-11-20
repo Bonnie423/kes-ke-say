@@ -9,9 +9,8 @@ router.get('/', async (req, res) => {
     const users = await db.getAllProfiles()
     res.status(200).json(users)
   } catch (error) {
-    res
-      .sendStatus(500)
-      .json({ message: 'Something went wrong getting all profiles' })
+    console.log(error)
+    res.status(500).send('Something went wrong getting all profiles')
   }
 })
 

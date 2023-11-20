@@ -46,7 +46,7 @@ const mockedData = [
 ]
 
 describe('GET /api/v1/users/', () => {
-  it('returns all pokemon', async () => {
+  it('returns all users', async () => {
     // Arrange
     vi.mocked(db.getAllProfiles).mockResolvedValue(mockedData)
 
@@ -55,7 +55,7 @@ describe('GET /api/v1/users/', () => {
 
     expect(response.status).toBe(200)
     expect(response.body).toHaveLength(4)
-    expect(response.body).toMatchInlineSnapshot(`[
+    expect(response.body).toEqual([
       {
         id: 1,
         auth0Id: 'auth0|123',
@@ -88,6 +88,21 @@ describe('GET /api/v1/users/', () => {
         location: 'Wellington',
         image: 'ava-08.png',
       },
-    ]`)
+    ])
+  })
+
+  it('returns an error if getAllProfiles throws', async () => {
+    // Arrange
+    const error = new Error('DATABASE ERROR: secret error info')
+    vi.mocked(db.getAllProfiles).mockRejectedValue(error)
+    vi.spyOn(console, 'log').mockImplementation(() => {})
+
+    // Act
+    const response = await request(server).get('/api/v1/users/')
+
+    // Assert
+    expect(console.log).toHaveBeenCalledWith(error)
+    expect(response.status).toBe(500)
+    expect(response.text).toBe('Something went wrong getting all profiles')
   })
 })
