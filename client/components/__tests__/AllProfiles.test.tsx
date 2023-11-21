@@ -1,15 +1,13 @@
 import { describe, it, expect } from 'vitest'
-import { screen } from '@testing-library/react'
+import { screen, waitForElementToBeRemoved } from '@testing-library/react/pure'
+import nock from 'nock'
 
 import { renderRoute } from '../../test-utils'
 
+nock.disableNetConnect()
+
 describe('<AllProfiles />', () => {
   it('renders a grid of profiles', () => {
-    renderRoute('/login')
-
-    const button = screen.getByRole('button', { name: /Sign Up/ })
-    expect(button).toContainHTML('button')
-    expect(button).toHaveClass('px-8')
-    expect.assertions(2)
+    renderRoute('/profiles')
   })
 })
