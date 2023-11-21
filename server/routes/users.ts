@@ -4,10 +4,10 @@ import * as db from '../db/functions/users'
 const router = express.Router()
 
 // GET /api/v1/users
-router.get('/', async (req, res) => {
+router.get('/profiles', async (req, res) => {
   try {
     const users = await db.getAllProfiles()
-    res.status(200).json(users)
+    res.json({ users })
   } catch (error) {
     console.log(error)
     res.status(500).send('Something went wrong getting all profiles')
