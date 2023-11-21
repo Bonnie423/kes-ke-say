@@ -18,7 +18,7 @@ export default function AllProfiles() {
   return (
     <section>
       <ul>
-        {allProfiles?.map((user) => (
+        {allProfiles.map((user) => (
           <li key={user.id}>{user.fullName}</li>
         ))}
       </ul>
