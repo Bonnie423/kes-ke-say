@@ -4,7 +4,7 @@ import * as db from '../db/functions/users'
 const router = express.Router()
 
 // GET /api/v1/users
-router.get('/profiles', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const users = await db.getAllProfiles()
     res.json({ users })
