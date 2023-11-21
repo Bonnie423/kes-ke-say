@@ -28,9 +28,13 @@
     ]
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.2.3",
     "@react-three/drei": "^9.58.4",
     "@react-three/fiber": "^8.12.0",
     "@react-three/postprocessing": "^2.7.1",
+    "express-jwt": "^7.7.7",
+    "express-jwt-authz": "^2.4.1",
+    "jwks-rsa": "^2.1.5",
     "express": "^4.17.2",
     "jwt-auth": "^2.0.1",
     "knex": "^2.3.0",

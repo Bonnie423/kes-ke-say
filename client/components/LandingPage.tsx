@@ -1,7 +1,9 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import Croissants from './Croissants'
 import styles from './LandingPage.module.css'
 
 function LandingPage() {
+  const { loginWithRedirect } = useAuth0()
   return (
     <>
       <div className="absolute h-screen w-screen">
@@ -17,7 +19,12 @@ function LandingPage() {
         </div>
         <div className="flex justify-center relative">
           <button className="btn-blue px-8 mx-8">Sign Up</button>
-          <button className="btn-blue px-8 mx-8">Log In</button>
+          <button
+            className="btn-blue px-8 mx-8"
+            onClick={() => loginWithRedirect()}
+          >
+            Log In
+          </button>
         </div>
       </div>
     </>
