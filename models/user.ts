@@ -15,3 +15,18 @@ export interface User {
   location: string
   image: string
 }
+
+export interface UserData {
+  client_id: string
+  email: string
+  password: string
+  picture: string
+  connection: string
+}
+
+export interface UserForm {
+  email: string
+  password: string
+  picture: string
+  username: string
+}
