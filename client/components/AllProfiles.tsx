@@ -19,12 +19,10 @@ export default function AllProfiles() {
     // <section>
     <div className="grid gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2 m-2">
       {allProfiles.map((user) => (
-        // <>
-
         <Link
           to={`/profiles/${user.username}`}
           key={user.id}
-          className="p-4 flex-auto text-center w-40 m-auto"
+          className="p-4 flex-auto text-center w-40 m-auto border-2 border-black"
         >
           <img
             src={`/images/avatars/${user.image}`}
@@ -34,7 +32,6 @@ export default function AllProfiles() {
           <br />
           {user.fullName}
         </Link>
-        // </>
       ))}
     </div>
     // </section>
