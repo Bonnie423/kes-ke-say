@@ -80,7 +80,7 @@ function Footer() {
             </div>
           </div>
           <p className="mt-8 text-xs text-gray-800">
-            © Whai 2023 | Kes-Ke-Say Limited
+            © Manaia 2023 | Kes-Ke-Say Limited
           </p>
         </div>
       </footer>

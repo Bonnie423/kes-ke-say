@@ -35,6 +35,7 @@
     "jwt-auth": "^2.0.1",
     "knex": "^2.3.0",
     "pg": "^8.7.1",
+    "react-infinite-scroll-component": "^6.1.0",
     "sqlite3": "^5.0.11",
     "superagent": "7.1.1",
     "three": "^0.150.1"
