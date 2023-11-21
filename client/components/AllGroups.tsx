@@ -16,21 +16,22 @@ const GroupList = () => {
 
   return (
     <>
+      <h1 className="text-center">All Groups</h1>
       <div className="grid md:grid-cols-2 sm:grid-cols-1 lg:grid-cols-3 m-5 mb-10">
-        {/* <h1>AllGroups</h1> */}
         {groups?.map((group) => (
           <div
-            className="bg-white overflow-hidden hover:bg-green-100 border border-gray-200 p-3"
+            className="bg-white overflow-hidden hover:bg-blue-100 border border-gray-200 p-3 text-center"
             key={group.id}
           >
-            <div className="rounded-full bg-slate-300 max-w-xs">
+            <div className="mx-auto w-40 h-40 flex items-center justify-center bg-slate-300 rounded-full mb-2 overflow-visible">
               <img
-                className="max-w-xs"
+                className="w-32 h-32 rounded-full overflow-visible"
+                
                 src={`/images/icons/${group.image}`}
                 alt={group.image}
               />
             </div>
-            <h5 className="text-center mt-2 text-4xl text-slate-700 font-bold leading-normal mb-1">
+            <h5 className="text-xl text-slate-700 font-bold leading-normal mb-1">
               {group.name}
             </h5>
           </div>
