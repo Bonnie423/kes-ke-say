@@ -17,9 +17,26 @@ export default function AllProfiles() {
   }
   return (
     <section>
-      <ul>
+      <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2 m-2">
         {allProfiles.map((user) => (
-          <li key={user.id}>{user.fullName}</li>
+          <Link
+            to={`/profiles/${user.username}`}
+            key={user.id}
+            className="p-4 flex-auto"
+          >
+            {' '}
+            <div className="flex justify-center">
+              <li>
+                <img
+                  src={`/images/avatars/${user.image}`}
+                  alt={`${user.fullName}`}
+                  style={{ maxWidth: '5em', margin: 'auto' }}
+                />
+                <br />
+                <p>{user.fullName}</p>
+              </li>
+            </div>
+          </Link>
         ))}
       </ul>
     </section>

@@ -14,6 +14,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-// GET /api/v1/users/:id
+// GET /api/v1/users/:username
 
 export default router
