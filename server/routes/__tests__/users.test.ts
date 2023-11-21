@@ -54,8 +54,8 @@ describe('GET /api/v1/users/', () => {
     const response = await request(server).get('/api/v1/users/')
 
     expect(response.status).toBe(200)
-    expect(response.body).toHaveLength(4)
-    expect(response.body).toEqual([
+    expect(response.body.users).toHaveLength(4)
+    expect(response.body.users).toEqual([
       {
         id: 1,
         auth0Id: 'auth0|123',
