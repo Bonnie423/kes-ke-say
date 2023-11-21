@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <Nav />
-      <Outlet />
+      <section className="container px-4 mx-auto mt-8">
+        <Outlet />
+      </section>
       <Footer />
     </>
   )
