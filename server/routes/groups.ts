@@ -5,15 +5,13 @@ const router = express.Router()
 
 // GET /api/v1/groups
 router.get('/', async (req, res) => {
-  try{
+  try {
     const groupList = await getAllGroups()
     res.json(groupList)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Internal server error' })
   }
-  catch (err){
-    console.error(err);
-    res.status(404).json({error: 'Internal server error'})
-  }
-  
 })
 
 export default router
