@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { User, UserSnakeCase } from '../../models/user'
+import { User } from '../../models/user'
 
 const serverUrl = '/api/v1/users'
 

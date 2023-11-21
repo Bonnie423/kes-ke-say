@@ -1,4 +1,4 @@
-import { User, UserSnakeCase } from '../../../models/user'
+import { User } from '../../../models/user'
 import db from '../connection'
 
 export async function getAllProfiles(): Promise<User[]> {

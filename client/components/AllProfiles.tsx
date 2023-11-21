@@ -17,7 +17,6 @@ export default function AllProfiles() {
   }
 
   return (
-    // <section>
     <div className="grid gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2 m-2">
       {allProfiles.map((user) => (
         <Link
@@ -35,6 +34,5 @@ export default function AllProfiles() {
         </Link>
       ))}
     </div>
-    // </section>
   )
 }

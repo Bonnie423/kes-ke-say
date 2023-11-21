@@ -1,11 +1,7 @@
 // @vitest-environment jsdom
 
 import { describe, it, expect } from 'vitest'
-import {
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react/pure'
+import { waitFor, waitForElementToBeRemoved } from '@testing-library/react/pure'
 import nock from 'nock'
 
 import { renderRoute } from '../../test-utils'
@@ -90,7 +86,6 @@ describe('<AllProfiles />', () => {
     )
 
     const paige = screen.getByText(/paige/i)
-    // const paige = screen.getByRole('link')
 
     expect(paige).toBeVisible()
     expect(scope.isDone()).toBe(true)
