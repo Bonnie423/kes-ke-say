@@ -3,6 +3,7 @@ import { createRoutesFromElements, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import App from './components/App'
 import Home from './components/Home'
+import SignUp from './components/SignUp'
 
 export const routes = createRoutesFromElements(
   <>
@@ -25,5 +26,6 @@ export const routes = createRoutesFromElements(
       </Route>
     </Route>
     <Route path="/login" element={<LandingPage />} />
+    <Route path="/signup" element={<SignUp />} />
   </>
 )

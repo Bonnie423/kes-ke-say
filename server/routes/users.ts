@@ -1,5 +1,6 @@
 import express from 'express'
 import checkJwt, { JwtRequest } from '../auth0'
+import * as db from '../db/functions/users.ts'
 
 const router = express.Router()
 
@@ -12,7 +13,7 @@ router.post('/', checkJwt, async (req: JwtRequest, res) => {
   try {
     const newUser = req.body
     const auth0Id = req.auth?.sub
-    const [user] = await db.addUser({
+    const user = await db.addUser({
       ...newUser,
       auth0Id,
     })
