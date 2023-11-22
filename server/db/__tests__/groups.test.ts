@@ -3,11 +3,12 @@ import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest'
 
 import connection from '../../db/connection.ts'
 
-beforeAll(async () => {
-  await connection.migrate.latest()
-})
+// beforeAll(async () => {
+//   await connection.migrate.latest()
+// })
 
 beforeEach(async () => {
+   await connection.migrate.latest()
   await connection.seed.run()
 })
 
