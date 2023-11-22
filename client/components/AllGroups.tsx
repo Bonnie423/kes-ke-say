@@ -10,7 +10,6 @@ const GroupList = () => {
     queryKey: ['groups'],
     queryFn: getAllGroups,
   })
-  if (groups) console.log(groups)
 
   if (error) {
     return <p>There was an error trying to load the groups!</p>
