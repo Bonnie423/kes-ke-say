@@ -3,6 +3,7 @@ import { createRoutesFromElements, Route } from 'react-router-dom'
 import LandingPage from './components/LandingPage'
 import App from './components/App'
 import Home from './components/Home'
+import GroupList from './components/AllGroups'
 import AllProfiles from './components/AllProfiles'
 
 export const routes = createRoutesFromElements(
@@ -20,7 +21,7 @@ export const routes = createRoutesFromElements(
         <Route path=":username" element={<div>Profile</div>} />
       </Route>
       <Route path="groups">
-        <Route index element={<div>AllGroups</div>} />
+        <Route index element={<GroupList />} />
         <Route path="add" element={<div>GroupProfileForm</div>} />
         <Route path=":id" element={<div>Group</div>} />
       </Route>
