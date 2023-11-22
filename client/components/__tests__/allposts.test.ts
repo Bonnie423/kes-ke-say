@@ -76,7 +76,6 @@ describe('<PostFeed/>', () => {
     const scope = nock('http://localhost').get('/api/v1/posts').reply(500)
     renderRoute('/')
     await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
-    // console.log(document.body.innerHTML)
     const error = screen.getByText(/error/i)
     expect(error).toBeVisible()
     expect(scope.isDone()).toBe(true)
