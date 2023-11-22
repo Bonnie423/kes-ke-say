@@ -25,29 +25,29 @@ export default function PostFeed() {
         <ul>
           {postFeedData?.map((p) => (
             <li
-              key={p.id}
+              key={p.postId}
               className="flex flex-col mt-5 p-5 border-2 rounded-lg hover:bg-gray-100
 
             "
             >
               <header className="flex flex-row gap-3 items-center">
                 <img
-                  src="https://picsum.photos/30/30"
+                  src={p.userImage}
                   className="rounded-full"
-                  alt={'p.user_name'}
+                  alt={p.username}
                 />
-                <div>{p.user_id}</div>
+                <div>{p.fullName}</div>
                 <div className="text-sm text-gray-500">
                   <h3>
                     Date:{' '}
                     {new Intl.DateTimeFormat('en-GB').format(
-                      new Date(p.created_at)
+                      new Date(p.createdAt)
                     )}
                   </h3>
                 </div>
               </header>
               <div>
-                <Link to={`/post/${p.id}`}>
+                <Link to={`/post/${p.postId}`}>
                   <div className="pb-5">
                     <p className="font-light text-sm pt-2">{p.body}</p>
                   </div>

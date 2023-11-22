@@ -1,7 +1,10 @@
 export interface PostFeedData {
-  id: number
-  user_id: number
-  created_at: Date
+  postId: number
+  userId: number
+  username: string
+  userImage: string
+  fullName: string
+  createdAt: Date
   body: string
   image: string
 }
