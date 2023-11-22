@@ -29,4 +29,6 @@ export interface UserForm {
   password: string
   picture: string
   username: string
+  fullname: string
+  location: string
 }

@@ -1,13 +1,13 @@
 import request from 'superagent'
 import { logError } from './utils.js'
-import { User, UserData, UserForm } from '../../models/user.js'
+import { User, UserData, UserForm, UserSnakeCase } from '../../models/user.js'
 
 const domain = 'manaia-2023-pete.au.auth0.com'
 
 // interface AddUsersFunction {
 //   newUser: User
 // }
-export async function addUser(newUser: UserForm): Promise<User> {
+export async function addUser(newUser: UserForm): Promise<any> {
   console.log('newUser: ', newUser)
 
   const sentUser: UserData = {
@@ -17,16 +17,25 @@ export async function addUser(newUser: UserForm): Promise<User> {
     picture: newUser.picture,
     connection: 'Kes-Ke-Say',
   }
-  return request
+  await request
     .post(`https://${domain}/dbconnections/signup`)
     .send(sentUser)
-    .then((res) => res.body)
-    .catch(logError)
+    .then((res) => {
+      console.log('Auth Res', res)
+      addLocalUser(res.body, newUser)
+    })
 }
 
-// {
-//   "client_id": "{yourClientId}",
-//   "email": "EMAIL",
-//   "password": "PASSWORD",
-//   "connection": "CONNECTION"
-// }
+async function addLocalUser(authRes: any, newUser: UserForm): Promise<User> {
+  const localUser = {
+    auth0_id: `auth0|${authRes._id}`,
+    username: newUser.username,
+    full_name: newUser.fullname,
+    location: newUser.location,
+    image: newUser.picture,
+  }
+  console.log(localUser)
+  const finalUser = await request.post('/api/v1/users').send(localUser)
+
+  return finalUser.body
+}

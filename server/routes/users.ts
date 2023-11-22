@@ -9,16 +9,13 @@ router.get('/', (req, res) => {
   res.status(200).send('Hello from the users route!')
 })
 
-router.post('/', checkJwt, async (req: JwtRequest, res) => {
+router.post('/', async (req, res) => {
   try {
     const newUser = req.body
-    const auth0Id = req.auth?.sub
-    const user = await db.addUser({
-      ...newUser,
-      auth0Id,
-    })
+    const user = await db.addUser(newUser)
 
-    res.json({ user })
+    // res.json({ user })
+    res.redirect('/login')
   } catch (error) {
     console.error(error)
     res.status(500).send('Something went wrong')
