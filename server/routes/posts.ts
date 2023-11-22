@@ -1,5 +1,4 @@
 import express from 'express'
-import connection from '../db/connection'
 import { getAllPosts } from '../db/functions/posts'
 
 const router = express.Router()

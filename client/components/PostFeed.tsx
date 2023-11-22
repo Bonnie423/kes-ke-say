@@ -1,9 +1,6 @@
-import Post from './Post'
-import { PostFeedData } from '../../models/post'
 import { usePosts } from '../hooks/usePosts'
-import { isError } from '@tanstack/react-query'
+
 import { Link } from 'react-router-dom'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 export default function PostFeed() {
   const { data: postFeedData, isLoading, isError } = usePosts()

@@ -3,19 +3,12 @@
 import { describe, it, expect } from 'vitest'
 import {
   screen,
-  render,
-  fireEvent,
   waitFor,
   waitForElementToBeRemoved,
   within,
 } from '@testing-library/react'
 import { renderRoute } from '../../test-utils'
-import userEvent from '@testing-library/user-event'
-import { MemoryRouter, Link } from 'react-router-dom'
 import nock from 'nock'
-
-import PostFeed from '../PostFeed'
-import { post } from 'superagent'
 
 describe('<PostFeed/>', () => {
   it('should render a loading indicator', async () => {
