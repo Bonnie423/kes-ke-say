@@ -1,4 +1,4 @@
-import * as db from '../../db/functions/groups'
+import * as db from '../../db/functions/groups.ts'
 import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest'
 
 import connection from '../../db/connection.ts'
