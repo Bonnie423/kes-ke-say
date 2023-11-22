@@ -34,7 +34,7 @@ export default function PostFeed() {
                 <img
                   src="https://picsum.photos/30/30"
                   className="rounded-full"
-                  alt={'person'}
+                  alt={'p.user_name'}
                 />
                 <div>{p.user_id}</div>
                 <div className="text-sm text-gray-500">
@@ -53,7 +53,11 @@ export default function PostFeed() {
                   </div>
                   <span className="flex items-center justify-center">
                     {p.image ? (
-                      <img src={p.image} alt={'thing'} width="300px" />
+                      <img
+                        src={p.image}
+                        alt={'User uploaded image'}
+                        width="300px"
+                      />
                     ) : null}
                   </span>
                 </Link>
