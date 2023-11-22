@@ -8,7 +8,8 @@ import connection from '../../db/connection.ts'
 // })
 
 beforeEach(async () => {
-   await connection.migrate.latest()
+  await connection.migrate.rollback()
+  await connection.migrate.latest()
   await connection.seed.run()
 })
 
