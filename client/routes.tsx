@@ -6,6 +6,7 @@ import Home from './components/Home'
 import GroupList from './components/AllGroups'
 import AllProfiles from './components/AllProfiles'
 import SignUp from './components/SignUp'
+import CompleteProfile from './components/CompleteProfile'
 
 export const routes = createRoutesFromElements(
   <>
@@ -27,6 +28,7 @@ export const routes = createRoutesFromElements(
         <Route path=":id" element={<div>Group</div>} />
       </Route>
     </Route>
+    <Route path="/complete-profile" element={<CompleteProfile />} />
     <Route path="/login" element={<LandingPage />} />
     <Route path="/signup" element={<SignUp />} />
   </>

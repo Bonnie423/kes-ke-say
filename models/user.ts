@@ -20,7 +20,6 @@ export interface UserData {
   client_id: string
   email: string
   password: string
-  picture: string
   connection: string
 }
 
@@ -31,4 +30,11 @@ export interface UserForm {
   username: string
   fullname: string
   location: string
+}
+
+export interface Profile {
+  username: string
+  fullname: string
+  location: string
+  picture: string
 }

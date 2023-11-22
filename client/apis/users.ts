@@ -1,6 +1,12 @@
 import request from 'superagent'
 import { logError } from './utils.js'
-import { User, UserData, UserForm, UserSnakeCase } from '../../models/user.js'
+import {
+  Profile,
+  User,
+  UserData,
+  UserForm,
+  UserSnakeCase,
+} from '../../models/user.js'
 
 const domain = 'manaia-2023-pete.au.auth0.com'
 
@@ -14,7 +20,6 @@ export async function addUser(newUser: UserForm): Promise<any> {
     client_id: '0ZtdingvXGgcWW5Jrf29utZNnXzmuMk2',
     email: newUser.email,
     password: newUser.password,
-    picture: newUser.picture,
     connection: 'Kes-Ke-Say',
   }
   await request
@@ -26,9 +31,29 @@ export async function addUser(newUser: UserForm): Promise<any> {
     })
 }
 
-async function addLocalUser(authRes: any, newUser: UserForm): Promise<User> {
+async function addLocalUser(
+  authRes: any,
+  newUser: UserForm | Profile
+): Promise<User> {
   const localUser = {
     auth0_id: `auth0|${authRes._id}`,
+    username: newUser.username,
+    full_name: newUser.fullname,
+    location: newUser.location,
+    image: newUser.picture,
+  }
+  console.log(localUser)
+  const finalUser = await request.post('/api/v1/users').send(localUser)
+
+  return finalUser.body
+}
+
+export async function completeProfile(
+  authRes: string,
+  newUser: UserForm | Profile
+): Promise<User> {
+  const localUser = {
+    auth0_id: authRes,
     username: newUser.username,
     full_name: newUser.fullname,
     location: newUser.location,
