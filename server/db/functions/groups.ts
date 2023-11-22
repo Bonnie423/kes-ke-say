@@ -1,9 +1,8 @@
-import knex from 'knex'
-import config from '../knexfile'
-import { Group } from '../../../models/groups.ts'
-import connection from '../connection.ts'
+// import knex from 'knex'
+// import config from '../knexfile'
 
-const db = knex(config.development)
+import db from '../connection'
+
 
 export function getAllGroups() {
   return db('groups').select('*')

@@ -1,7 +1,7 @@
-import * as db from '../functions/groups.ts'
+import * as db from '../functions/groups'
 import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest'
 
-import connection from '../connection.ts'
+import connection from '../connection'
 
 beforeAll(() => {
   return connection.migrate.latest()

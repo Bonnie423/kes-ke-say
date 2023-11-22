@@ -34,8 +34,6 @@ describe('GET /api/v1/groups', () => {
 
     const response = await request(server).get('/api/v1/groups')
 
-    console.log(response.body, 'from the test file')
-
     // expect(response.body).toEqual({
     //   error: 'There was an error trying to get the sharks',
     // })
