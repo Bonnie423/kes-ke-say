@@ -1,15 +1,13 @@
 import * as db from '../../db/functions/groups.ts'
 import { describe, it, expect, beforeAll, beforeEach, afterAll } from 'vitest'
 
-import connection from '../../db/connection.ts'
+import connection from '../connection.ts'
 
-// beforeAll(async () => {
-//   await connection.migrate.latest()
-// })
+beforeAll(async () => {
+  await connection.migrate.latest()
+})
 
 beforeEach(async () => {
-  await connection.migrate.rollback()
-  await connection.migrate.latest()
   await connection.seed.run()
 })
 
