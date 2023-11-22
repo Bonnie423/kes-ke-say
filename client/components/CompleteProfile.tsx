@@ -1,9 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { completeProfile, getAllUsers } from '../apis/users'
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { Profile, User, UserForm } from '../../models/user'
+import { Profile } from '../../models/user'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const initialForm = {
   username: '',
@@ -18,7 +18,7 @@ function CompleteProfile() {
   const [picture, setPicture] = useState<string>('')
   const [submit, setSubmit] = useState(false)
   const navigate = useNavigate()
-  const { user, isAuthenticated } = useAuth0()
+  const { user } = useAuth0()
   const queryClient = useQueryClient()
   console.log(user)
   const completeProfileMutation = useMutation({
@@ -27,9 +27,6 @@ function CompleteProfile() {
       queryClient.invalidateQueries({ queryKey: ['users'] })
     },
   })
-
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
-  const emailRegex = /^[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/
 
   const {
     data: allProfiles,
