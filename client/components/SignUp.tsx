@@ -1,5 +1,5 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { addUser } from '../apis/users'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { addUser, getAllUsers } from '../apis/users'
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { User, UserForm } from '../../models/user'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -18,9 +18,6 @@ function SignUp() {
   const [picture, setPicture] = useState<string>('')
   const [submit, setSubmit] = useState(false)
 
-  const { loginWithRedirect } = useAuth0()
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
-  const emailRegex = /^[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/
   const queryClient = useQueryClient()
 
   const addUserMutation = useMutation({
@@ -29,6 +26,23 @@ function SignUp() {
       queryClient.invalidateQueries({ queryKey: ['users'] })
     },
   })
+
+  const { loginWithRedirect } = useAuth0()
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/
+  const emailRegex = /^[\w._%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/
+
+  // const {
+  //   data: allProfiles,
+  //   isError,
+  //   isLoading,
+  // } = useQuery({ queryKey: ['users'], queryFn: () => getAllUsers() })
+  // if (isError) {
+  //   return <div>There was an error getting all profiles...</div>
+  // }
+
+  // if (!allProfiles || isLoading) {
+  //   return <div>Loading all profiles...</div>
+  // }
 
   function handleChange(
     event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>
@@ -94,6 +108,7 @@ function SignUp() {
         <input
           id="username"
           type="text"
+          required
           placeholder="Username"
           name="username"
           onChange={handleChange}
@@ -102,6 +117,7 @@ function SignUp() {
         <label htmlFor="fullname">Full Name</label>
         <input
           id="fullname"
+          required
           type="text"
           placeholder="Full Name"
           name="fullname"
@@ -112,6 +128,7 @@ function SignUp() {
         <input
           id="location"
           type="text"
+          required
           placeholder="Location"
           name="location"
           onChange={handleChange}
@@ -120,6 +137,7 @@ function SignUp() {
         <label htmlFor="avatar">Avatar</label>
         <select
           id="avatar"
+          required
           name="picture"
           onChange={handleChange}
           className="m-4 border-solid border-2 border-black p-2 px-5 w-1/3"
@@ -158,9 +176,7 @@ function SignUp() {
           <button type="submit" className="btn-blue mt-12 mb-12">
             Submit
           </button>
-        ) : (
-          <p>Invalid Password and/or Email address</p>
-        )}
+        ) : null}
       </form>
       {submit && (
         <>
