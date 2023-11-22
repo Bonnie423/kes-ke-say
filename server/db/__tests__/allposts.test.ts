@@ -15,7 +15,7 @@ describe('getAllPosts', () => {
   it('returns all the posts', async () => {
     const allPosts = await getAllPosts()
     expect(allPosts).toHaveLength(8)
-    expect(allPosts[1].id).toBe(2)
+    expect(allPosts[1].postId).toBe(2)
     expect(allPosts[2].body).toBe('No pineapples')
   })
 })
