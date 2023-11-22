@@ -8,10 +8,10 @@ const router = express.Router()
 router.get('/', async (req, res) => {
   try {
     const posts = await getAllPosts()
-    if (!posts) {
-      res.status(404).json({ message: 'No posts!' })
-      return
-    }
+    // if (!posts || posts.length === 0) {
+    //   res.status(404).json('No posts!')
+    //   return
+    // }
     res.json(posts)
   } catch (err) {
     res.status(500).json({
