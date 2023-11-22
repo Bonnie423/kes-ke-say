@@ -1,6 +1,4 @@
 import { useQuery } from '@tanstack/react-query'
-
-import { Group } from '../../models/groups'
 import { getAllGroups } from '../apis/groups'
 
 const GroupList = () => {

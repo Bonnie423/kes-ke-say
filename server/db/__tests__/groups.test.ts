@@ -11,14 +11,6 @@ beforeEach(async () => {
   await connection.seed.run()
 })
 
-// describe('deleteGoup', () => {
-//   it('deletes a group', async () => {
-//     await db.deleteGroup(3)
-//     const allGroups = await db.getAllGroups()
-//     expect(allGroups).toHaveLength(3)
-//   })
-// })
-
 describe('getAllGroups', () => {
   it('gets the complete list of groups', async () => {
     const allGroups = await db.getAllGroups()

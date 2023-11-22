@@ -34,10 +34,6 @@ describe('GET /api/v1/groups', () => {
 
     const response = await request(server).get('/api/v1/groups')
 
-    // expect(response.body).toEqual({
-    //   error: 'There was an error trying to get the sharks',
-    // })
-
     expect(response.body.error).toBe('Internal server error')
     expect(console.error).toHaveBeenCalledWith(
       new Error('SQLITE ERROR: db broke')
