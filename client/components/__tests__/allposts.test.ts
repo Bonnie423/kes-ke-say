@@ -65,10 +65,10 @@ describe('<PostFeed/>', () => {
       .getAllByRole('listitem')
       .map((li) => li.textContent)
     expect(listItems).toMatchInlineSnapshot(`
-    [
-      "Date: 23/11/2023I found this really interesting book, you should check it out",
-      "Date: 23/11/2023I found this really cool Italian place, they have the best food",
-    ]
+      [
+        "Date: 23/11/2023I found this really interesting book, you should check it out",
+        "Date: 23/11/2023I found this really cool Italian place, they have the best food",
+      ]
     `)
     expect(scope.isDone()).toBe(true)
   })
