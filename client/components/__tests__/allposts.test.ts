@@ -21,7 +21,7 @@ describe('<PostFeed/>', () => {
           body: 'I found this really interesting book, you should check it out',
           image:
             'https://img.freepik.com/free-photo/book-composition-with-open-book_23-2147690555.jpg',
-          created_at: new Date(Date.now()),
+          created_at: 1687321511537,
         },
         {
           id: 2,
@@ -29,7 +29,7 @@ describe('<PostFeed/>', () => {
           body: 'I found this really cool Italian place, they have the best food',
           image:
             'https://img.freepik.com/free-photo/fettuccine-with-tomato-sauce-minced-meat-garnished-with-grated-parmesan_141793-1778.jpg',
-          created_at: new Date(Date.now()),
+          created_at: 1687321511537,
         },
       ])
     renderRoute('/')
@@ -47,7 +47,7 @@ describe('<PostFeed/>', () => {
           body: 'I found this really interesting book, you should check it out',
           image:
             'https://img.freepik.com/free-photo/book-composition-with-open-book_23-2147690555.jpg',
-          createdAt: new Date(Date.now()),
+          createdAt: 1687321511537,
         },
         {
           postId: 2,
@@ -55,7 +55,7 @@ describe('<PostFeed/>', () => {
           body: 'I found this really cool Italian place, they have the best food',
           image:
             'https://img.freepik.com/free-photo/fettuccine-with-tomato-sauce-minced-meat-garnished-with-grated-parmesan_141793-1778.jpg',
-          createdAt: new Date(Date.now()),
+          createdAt: 1687321511537,
         },
       ])
     renderRoute('/')
@@ -66,8 +66,8 @@ describe('<PostFeed/>', () => {
       .map((li) => li.textContent)
     expect(listItems).toMatchInlineSnapshot(`
       [
-        "Date: 23/11/2023I found this really interesting book, you should check it out",
-        "Date: 23/11/2023I found this really cool Italian place, they have the best food",
+        "Date: 21/06/2023I found this really interesting book, you should check it out",
+        "Date: 21/06/2023I found this really cool Italian place, they have the best food",
       ]
     `)
     expect(scope.isDone()).toBe(true)

@@ -15,6 +15,5 @@ export function getAllPosts() {
       'posts.created_at as createdAt'
     )
 
-  console.log(allPosts)
   return allPosts
 }
