@@ -9,24 +9,6 @@ export default function Home() {
   const { user, isAuthenticated, isLoading } = useAuth0()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    if (isLoading) {
-      return
-    }
-    if (
-      isAuthenticated &&
-      allProfiles?.some((profile) => profile.auth0Id === user?.sub)
-    ) {
-      console.log('User authenticated:', user)
-    } else if (isAuthenticated) {
-      console.log('Redirecting to /complete-profile', allProfiles)
-      navigate('/complete-profile')
-    } else {
-      console.log('User not authenticated')
-      navigate('/login')
-    }
-  }, [isAuthenticated, user, isLoading, navigate])
-
   const {
     data: allProfiles,
     isError,
@@ -41,6 +23,24 @@ export default function Home() {
     console.log('isPending')
     return <div>Loading all profiles...</div>
   }
+
+  // useEffect(() => {
+  if (isLoading) {
+    return
+  }
+  if (
+    isAuthenticated &&
+    allProfiles?.some((profile) => profile.auth0Id === user?.sub)
+  ) {
+    console.log('User authenticated:', user)
+  } else if (isAuthenticated) {
+    console.log('Redirecting to /complete-profile', allProfiles)
+    navigate('/complete-profile')
+  } else {
+    console.log('User not authenticated')
+    navigate('/login')
+  }
+  // }, [isAuthenticated, user, isLoading, navigate])
 
   return (
     <div>

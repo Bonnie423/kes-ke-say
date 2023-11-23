@@ -10,9 +10,6 @@ import {
 
 const domain = 'manaia-2023-pete.au.auth0.com'
 
-// interface AddUsersFunction {
-//   newUser: User
-// }
 export async function addUser(newUser: UserForm): Promise<any> {
   console.log('newUser: ', newUser)
 
@@ -31,10 +28,10 @@ export async function addUser(newUser: UserForm): Promise<any> {
     })
 }
 
-async function addLocalUser(
+export async function addLocalUser(
   authRes: any,
   newUser: UserForm | Profile
-): Promise<User> {
+): Promise<User[]> {
   const localUser = {
     auth0_id: `auth0|${authRes._id}`,
     username: newUser.username,
@@ -44,6 +41,7 @@ async function addLocalUser(
   }
   console.log(localUser)
   const finalUser = await request.post('/api/v1/users').send(localUser)
+  console.log('finalUser: ', finalUser.body)
 
   return finalUser.body
 }

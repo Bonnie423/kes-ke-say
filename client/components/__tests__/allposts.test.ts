@@ -9,12 +9,12 @@ import {
 } from '@testing-library/react'
 import { renderRoute } from '../../test-utils'
 import nock from 'nock'
-import { useAuth0 } from '@auth0/auth0-react'
+import { Auth0ContextInterface, User, useAuth0 } from '@auth0/auth0-react'
 import { getAllUsers } from '../../apis/users'
 import { useQuery } from '@tanstack/react-query'
 vi.mock('@auth0/auth0-react')
 // vi.mock('@tanstack/react-query')
-// vi.mock('../../apis/users')
+vi.mock('../../apis/users')
 
 const mockAllProfiles = [
   {
@@ -35,14 +35,23 @@ const mockAllProfiles = [
 
 const useAuth0Mock = vi.mocked(useAuth0)
 
-beforeEach(() => {
+beforeEach(async () => {
   useAuth0Mock.mockReturnValue({
-    ...useAuth0(),
     isAuthenticated: true,
     user: { sub: 'auth0|123' },
     logout: vi.fn(),
     loginWithRedirect: vi.fn(),
-  })
+  } as unknown as Auth0ContextInterface<User>)
+  vi.mocked(getAllUsers).mockResolvedValue([
+    {
+      id: 1,
+      auth0Id: 'auth0|123',
+      username: 'paige',
+      fullName: 'Paige Turner',
+      location: 'Auckland',
+      image: 'ava-03.png',
+    },
+  ])
 })
 
 afterEach(() => {
@@ -55,25 +64,25 @@ describe('<PostFeed/>', () => {
       .get('/api/v1/posts')
       .reply(200, [
         {
-          id: 1,
-          user_id: 1,
+          postId: 1,
+          userId: 1,
           body: 'I found this really interesting book, you should check it out',
           image:
             'https://img.freepik.com/free-photo/book-composition-with-open-book_23-2147690555.jpg',
-          created_at: 1687321511537,
+          createdAt: 1687321511537,
         },
         {
-          id: 2,
-          user_id: 2,
+          postId: 2,
+          userId: 2,
           body: 'I found this really cool Italian place, they have the best food',
           image:
             'https://img.freepik.com/free-photo/fettuccine-with-tomato-sauce-minced-meat-garnished-with-grated-parmesan_141793-1778.jpg',
-          created_at: 1687321511537,
+          createdAt: 1687321511537,
         },
       ])
     renderRoute('/')
-    const loading = await waitFor(() => screen.getByText(/loading/i))
-    expect(loading).toBeVisible()
+    expect(screen.getByText(/loading/i)).toBeVisible()
+    await waitForElementToBeRemoved(() => screen.queryByText(/loading/i))
     expect(scope.isDone()).toBe(true)
   })
   it('should render some posts', async () => {
@@ -111,6 +120,7 @@ describe('<PostFeed/>', () => {
     `)
     expect(scope.isDone()).toBe(true)
   })
+
   it('should show an error message when there is a error', async () => {
     const scope = nock('http://localhost').get('/api/v1/posts').reply(500)
     renderRoute('/')
