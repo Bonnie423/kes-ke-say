@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import PostFeed from './PostFeed'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -11,5 +12,9 @@ export default function Home() {
     }
   }, [isAuth, navigate])
 
-  return <div>Home</div>
+  return (
+    <div>
+      <PostFeed />
+    </div>
+  )
 }
