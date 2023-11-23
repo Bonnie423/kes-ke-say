@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useQuery } from '@tanstack/react-query'
 import { getAllUsers } from '../apis/users'
+import PostFeed from './PostFeed'
 
 export default function Home() {
   const { user, isAuthenticated, isLoading } = useAuth0()
@@ -39,5 +40,9 @@ export default function Home() {
     return <div>Loading all profiles...</div>
   }
 
-  return <div>Home</div>
+  return (
+    <div>
+      <PostFeed />
+    </div>
+  )
 }

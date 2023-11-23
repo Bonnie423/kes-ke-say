@@ -37,5 +37,34 @@ export const seed = async function (knex) {
       image: '',
       created_at: new Date(Date.now()),
     },
+    {
+      id: 5,
+      user_id: 4,
+      body: 'I love a full English breakfast',
+      image: '',
+      created_at: new Date(Date.now()),
+    },
+    {
+      id: 6,
+      user_id: 2,
+      body: 'I love a full English breakfast',
+      image:
+        'https://img.freepik.com/free-photo/pineapple-with-knife-white-cutting-board_176474-8791.jpg',
+      created_at: new Date(Date.now()),
+    },
+    {
+      id: 7,
+      user_id: 3,
+      body: 'I love a full English breakfast',
+      image: '',
+      created_at: new Date(Date.now()),
+    },
+    {
+      id: 8,
+      user_id: 1,
+      body: 'I love a full English breakfast',
+      image: '',
+      created_at: new Date(Date.now()),
+    },
   ])
 }
