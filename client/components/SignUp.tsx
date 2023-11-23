@@ -182,7 +182,7 @@ function SignUp() {
           !allProfiles.some(
             (user) => user.username === form?.username
           ) ? (
-            <button type="submit" className="btn-blue mt-12 mb-12">
+            <button name='submit' type="submit" className="btn-blue mt-12 mb-12" id='submit-button'>
               Submit
             </button>
           ) : null}
