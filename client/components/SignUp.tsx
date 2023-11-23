@@ -180,7 +180,7 @@ function SignUp() {
           {passwordRegex.test(form.password) &&
           emailRegex.test(form.email) &&
           !allProfiles.some(
-            (user) => user.username === currentForm?.username
+            (user) => user.username === form?.username
           ) ? (
             <button type="submit" className="btn-blue mt-12 mb-12">
               Submit
