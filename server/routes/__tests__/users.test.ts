@@ -45,6 +45,15 @@ const mockedData = [
   },
 ]
 
+const mockedUser = {
+  id: 12,
+  auth0Id: 'auth0|789',
+  username: 'jimbo',
+  fullName: 'Jimbo jones',
+  location: 'Springfield',
+  image: 'ava-09.png',
+}
+
 describe('GET /api/v1/users/', () => {
   it('returns all users', async () => {
     // Arrange
@@ -104,5 +113,27 @@ describe('GET /api/v1/users/', () => {
     expect(console.log).toHaveBeenCalledWith(error)
     expect(response.status).toBe(500)
     expect(response.text).toBe('Something went wrong getting all profiles')
+  })
+})
+
+describe('POST /api/v1/users/', () => {
+  it('adds a user to the db', async () => {
+    // Arrange
+    vi.mocked(db.addUser).mockResolvedValue(mockedUser)
+
+    const response = await request(server)
+      .post('/api/v1/users/')
+      .send(mockedUser)
+
+    // expect(response.status).toBe(201)
+    // expect(response.body).toHaveLength(6)
+    expect(response.body).toEqual([
+      12,
+      'auth0|789',
+      'jimbo',
+      'Jimbo jones',
+      'Springfield',
+      'ava-09.png',
+    ])
   })
 })

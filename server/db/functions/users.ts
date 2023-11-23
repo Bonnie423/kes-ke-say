@@ -1,7 +1,7 @@
 import { User } from '../../../models/user.js'
 import db from '../connection'
 
-export async function addUser(newUser: User): Promise<User[]> {
+export async function addUser(newUser: User): Promise<User> {
   const result = await db('users')
     .insert(newUser)
     .returning([
