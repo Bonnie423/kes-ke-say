@@ -1,6 +1,6 @@
 //@vitest-environment jsdom
 
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import {
   screen,
   waitFor,
@@ -9,6 +9,45 @@ import {
 } from '@testing-library/react'
 import { renderRoute } from '../../test-utils'
 import nock from 'nock'
+import { useAuth0 } from '@auth0/auth0-react'
+import { getAllUsers } from '../../apis/users'
+import { useQuery } from '@tanstack/react-query'
+vi.mock('@auth0/auth0-react')
+// vi.mock('@tanstack/react-query')
+// vi.mock('../../apis/users')
+
+const mockAllProfiles = [
+  {
+    id: 1,
+    auth0Id: 'auth0|123',
+    username: 'paige',
+    fullName: 'Paige Turner',
+    location: 'Auckland',
+    image: 'ava-03.png',
+  },
+]
+
+// vi.spyOn(reactQuery, 'useQuery').mockReturnValue({
+//   data: mockAllProfiles,
+//   isError: false,
+//   isLoading: false,
+// } as any)
+
+const useAuth0Mock = vi.mocked(useAuth0)
+
+beforeEach(() => {
+  useAuth0Mock.mockReturnValue({
+    ...useAuth0(),
+    isAuthenticated: true,
+    user: { sub: 'auth0|123' },
+    logout: vi.fn(),
+    loginWithRedirect: vi.fn(),
+  })
+})
+
+afterEach(() => {
+  vi.clearAllMocks()
+})
 
 describe('<PostFeed/>', () => {
   it('should render a loading indicator', async () => {

@@ -45,14 +45,16 @@ const mockedData = [
   },
 ]
 
-const mockedUser = {
-  id: 12,
-  auth0Id: 'auth0|789',
-  username: 'jimbo',
-  fullName: 'Jimbo jones',
-  location: 'Springfield',
-  image: 'ava-09.png',
-}
+const mockedUser = [
+  {
+    id: 12,
+    auth0Id: 'auth0|789',
+    username: 'jimbo',
+    fullName: 'Jimbo jones',
+    location: 'Springfield',
+    image: 'ava-09.png',
+  },
+]
 
 describe('GET /api/v1/users/', () => {
   it('returns all users', async () => {
@@ -119,21 +121,23 @@ describe('GET /api/v1/users/', () => {
 describe('POST /api/v1/users/', () => {
   it('adds a user to the db', async () => {
     // Arrange
+    console.log('line 122', mockedUser)
     vi.mocked(db.addUser).mockResolvedValue(mockedUser)
-
+    console.log('line 123)', mockedUser)
     const response = await request(server)
       .post('/api/v1/users/')
       .send(mockedUser)
 
-    // expect(response.status).toBe(201)
-    // expect(response.body).toHaveLength(6)
-    expect(response.body).toEqual([
-      12,
-      'auth0|789',
-      'jimbo',
-      'Jimbo jones',
-      'Springfield',
-      'ava-09.png',
+    expect(response.status).toBe(200)
+    expect(response.body.user).toEqual([
+      {
+        auth0Id: 'auth0|789',
+        fullName: 'Jimbo jones',
+        id: 12,
+        image: 'ava-09.png',
+        location: 'Springfield',
+        username: 'jimbo',
+      },
     ])
   })
 })

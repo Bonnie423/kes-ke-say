@@ -32,8 +32,8 @@ export default function PostFeed() {
             >
               <header className="flex flex-row gap-3 items-center">
                 <img
-                  src={p.userImage}
-                  className="rounded-full"
+                  src={`images/avatars/${p.userImage}`}
+                  className="rounded-full w-10"
                   alt={p.username}
                 />
                 <div>{p.fullName}</div>

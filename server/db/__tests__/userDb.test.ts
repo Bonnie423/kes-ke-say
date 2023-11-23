@@ -11,10 +11,35 @@ beforeEach(async () => {
   await connection.seed.run()
 })
 
+const user = {
+  id: 12,
+  auth0_id: 'auth0|789',
+  username: 'jimbo',
+  full_name: 'Jimbo jones',
+  location: 'Springfield',
+  image: 'ava-09.png',
+}
+
 describe('getAllProfiles', () => {
   it('get all the profiles', async () => {
     const allProfiles = await dbFunctions.getAllProfiles()
     expect(allProfiles).toHaveLength(4)
+  })
+})
+
+describe('addUser', () => {
+  it('adds a user', async () => {
+    const result = await dbFunctions.addUser(user)
+    expect(result).toEqual([
+      {
+        id: 12,
+        auth0Id: 'auth0|789',
+        username: 'jimbo',
+        fullName: 'Jimbo jones',
+        location: 'Springfield',
+        image: 'ava-09.png',
+      },
+    ])
   })
 })
 

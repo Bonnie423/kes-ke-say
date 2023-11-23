@@ -1,7 +1,7 @@
-import { User } from '../../../models/user.js'
+import { User, UserForm, UserSnakeCase } from '../../../models/user.js'
 import db from '../connection'
 
-export async function addUser(newUser: User): Promise<User> {
+export async function addUser(newUser: UserSnakeCase): Promise<any[]> {
   const result = await db('users')
     .insert(newUser)
     .returning([
@@ -12,7 +12,7 @@ export async function addUser(newUser: User): Promise<User> {
       'location',
       'image',
     ])
-  console.log(result)
+  console.log('line 15', result)
   return result
 }
 

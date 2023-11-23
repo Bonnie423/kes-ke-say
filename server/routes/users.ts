@@ -17,9 +17,9 @@ router.post('/', async (req, res) => {
   try {
     const newUser = req.body
     const user = await db.addUser(newUser)
-
-    // res.json({ user })
-    res.redirect('/login')
+    console.log('line20', user)
+    res.json({ user })
+    // res.redirect('/login')
   } catch (error) {
     console.error(error)
     res.status(500).send('Something went wrong')
